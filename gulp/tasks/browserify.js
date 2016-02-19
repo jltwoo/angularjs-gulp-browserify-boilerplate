@@ -16,17 +16,19 @@ import handleErrors from '../util/handleErrors';
 import browserSync  from 'browser-sync';
 import debowerify   from 'debowerify';
 import ngAnnotate   from 'browserify-ngannotate';
+import preprocessify   from 'preprocessify';
+import eventStream from 'event-stream';
 
 function createSourcemap() {
   return !global.isProd || config.browserify.prodSourcemap;
 }
 
-// Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
-function buildScript(file) {
-  
+function buildTask(file){
+
   let bundler = browserify({
-    entries: [config.sourceDir + 'js/' + file],
+    entries: [config.sourceDir + 'js/' +file],
     debug: createSourcemap(),
+    shim: config.browserify.shim,
     cache: {},
     packageCache: {},
     fullPaths: !global.isProd
@@ -48,6 +50,10 @@ function buildScript(file) {
     { 'name':'brfs', 'options': {}},
     { 'name':'bulkify', 'options': {}}
   ];
+  
+  bundler.transform(preprocessify({
+    MOCK_BACKEND: (!global.isProd && config.browserify.mockBackEnd)
+  }))
 
   transforms.forEach(function(transform) {
     bundler.transform(transform.name, transform.options);
@@ -73,8 +79,20 @@ function buildScript(file) {
 
 }
 
+// Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
+function buildScript() {
+  var files= [
+     'public/main.js',
+     'business/main.js'
+  ]; 
+  var tasks = files.map(function(file){
+    return buildTask(file);
+  })
+  return eventStream.merge.apply(null, tasks);
+}
+
 gulp.task('browserify', function() {
 
-  return buildScript('main.js');
+  return buildScript();
 
 });

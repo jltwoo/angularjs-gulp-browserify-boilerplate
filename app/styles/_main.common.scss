@@ -1,0 +1,26 @@
+@import 'typography';
+
+$link-color: $color-primary-0;
+$link-hover-color: darken($link-color, 15%);
+
+$icon-font-path: "/fonts/bootstrap/";
+@import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
+
+$fontAwesomePath: "/fonts/";
+@import '../../bower_components/font-awesome/scss/font-awesome';
+@import '../../node_modules/ng-sortable/dist/ng-sortable.min';
+
+html{
+  overflow:auto;
+}
+body {
+  font-family: roboto, sans-serif;
+  color: $font-color--dark;
+  background-color: white;
+  height: 100%;
+}
+h1,h2,h3,h4{
+	font-family: Montserrat,roboto,sans-serif;
+}
+
+

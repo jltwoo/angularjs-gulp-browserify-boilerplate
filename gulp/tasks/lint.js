@@ -6,6 +6,8 @@ import jshint from 'gulp-jshint';
 
 gulp.task('lint', function() {
   return gulp.src([config.scripts.src, '!app/js/templates.js'])
-    .pipe(jshint())
+    .pipe(jshint({
+    	unused:"vars"
+    }))
     .pipe(jshint.reporter('jshint-stylish'));
 });

@@ -1,42 +1,52 @@
-p {
-  margin-bottom: 1em;
-}
+@import 'mixins';
 
-.heading {
-  margin-bottom: 0.618em;
+@include font-face(roboto, '/fonts/Roboto/roboto_black_macroman/Roboto-Black-webfont',bolder,normal,eot woff ttf svg);
+@include font-face(roboto, '/fonts/Roboto/roboto_bold_macroman/Roboto-Bold-webfont',bold,normal,eot woff ttf svg);
+@include font-face(roboto, '/fonts/Roboto/roboto_thin_macroman/Roboto-Thin-webfont',200,normal,eot woff ttf svg);
+@include font-face(roboto, '/fonts/Roboto/roboto_regular_macroman/Roboto-Regular-webfont',400,normal,eot woff ttf svg);
 
-  &.-large {
-    font-size: $font-size--lg;
-    font-weight: bold;
-    line-height: $half-space * 3 / 2;
-  }
+/*Provided by Material Icon*/
+@include font-face(MaterialIcons, '/fonts/MaterialIcons/MaterialIcons-Regular',400,normal,ttf woff2 woff);
+.material-icons{
+  font-family: 'MaterialIcons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
-  &.-medium {
-    font-size: $font-size--md;
-    font-weight: normal;
-    line-height: $half-space;
-  }
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+  // Rules for sizing the icon.
+  &.md-18 { font-size: 18px; }
+  &.md-24 { font-size: 24px; }
+  &.md-36 { font-size: 36px; }
+  &.md-48 { font-size: 48px; }
 
-  &.-small {
-    font-size: $font-size--sm;
-    font-weight: bold;
-    line-height: $half-space * 2 / 3;
-  }
+  // Rules for using icons as black on a light background.
+  &.md-dark { color: rgba(0, 0, 0, 0.54); }
+  &.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
-  &.-smallest {
-    font-size: $font-size--xs;
-    font-weight: bold;
-  }
-}
+  // Rules for using icons as white on a dark background.
+  &.md-light { color: rgba(255, 255, 255, 1); }
+  &.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
-h1 {
-  @extend .heading.-large;
-}
+  &.md-dark { color: rgba(0, 0, 0, 0.54); }
+  &.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
-h2 {
-  @extend .heading.-medium;
-}
-
-h3 {
-  @extend .heading.-small;
+  &.md-light { color: rgba(255, 255, 255, 1); }
+  &.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 }

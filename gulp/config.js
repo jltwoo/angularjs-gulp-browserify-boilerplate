@@ -10,6 +10,7 @@ export default {
 
   styles: {
     src: 'app/styles/**/*.scss',
+    bootstrap: 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss',
     dest: 'build/css',
     prodSourcemap: false,
     sassIncludePaths: []
@@ -26,7 +27,11 @@ export default {
   },
 
   fonts: {
-    src: ['app/fonts/**/*'],
+    src: [
+    'app/fonts/**/*',
+    'bower_components/bootstrap-sass/assets/fonts/**',
+    'bower_components/font-awesome/fonts/**'
+    ],
     dest: 'build/fonts'
   },
 
@@ -45,8 +50,9 @@ export default {
   ],
 
   views: {
-    index: 'app/index.html',
-    src: 'app/views/**/*.html',
+    index: 'app/index.jade',
+    indexBusiness: 'app/index.business.jade',
+    src: 'app/views/**/*.jade',
     dest: 'app/js'
   },
 
@@ -58,7 +64,10 @@ export default {
 
   browserify: {
     bundleName: 'main.js',
-    prodSourcemap: false
+    prodSourcemap: false,
+    // this enables mockbackend in angular code only if global.isProd is also false
+    mockBackEnd: true, 
+    shim: {}
   },
 
   test: {

@@ -13,7 +13,7 @@ gulp.task('styles', function () {
 
   const createSourcemap = !global.isProd || config.styles.prodSourcemap;
 
-  return gulp.src(config.styles.src)
+  return gulp.src([config.styles.bootstrap, config.styles.src])
     .pipe(gulpif(createSourcemap, sourcemaps.init()))
     .pipe(sass({
       sourceComments: !global.isProd,
@@ -21,7 +21,7 @@ gulp.task('styles', function () {
       includePaths: config.styles.sassIncludePaths
     }))
     .on('error', handleErrors)
-    .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 8'))
+    .pipe(autoprefixer('last 5 versions', '> 1%', 'ie 8'))
     .pipe(gulpif(
       createSourcemap,
       sourcemaps.write( global.isProd ? './' : null ))

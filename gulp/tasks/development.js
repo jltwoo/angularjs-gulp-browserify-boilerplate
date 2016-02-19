@@ -10,3 +10,13 @@ gulp.task('dev', ['clean'], function(cb) {
   runSequence(['styles', 'images', 'fonts', 'views', 'browserify'], 'watch', cb);
 
 });
+
+gulp.task('dev-compile', ['clean'], function(cb) {
+
+  global.isProd = false;
+
+  cb = cb || function() {};
+
+  runSequence(['styles', 'images', 'fonts', 'views'], 'browserify', 'gzip', cb);
+
+});

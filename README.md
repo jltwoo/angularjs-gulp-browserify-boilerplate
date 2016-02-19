@@ -1,6 +1,27 @@
+This boilerplate is modified version of [angularjs-gulp-browserify-boilerplate](https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate/)
+
+Changes added:
+
+##### AngularJS modules 
+Modules are now grouped by modules instead of whether it's controller/filters/services etc.
+So `app/js/common/user` will include all controllers/filters/services related to the `app.user` module instead
+
+##### Multiple Single-page applications
+This project now supports multiple single-page-applications. This is useful if you distinct application behaviour
+between public users and administrative users for example to isolate code logic.
+
+##### Extra 3rd Party modules
+BootstrapUI, Material-Icons, Material-Colors, FontAwesomeIcons are included in the sass files and bower dependencies
+
+##### Server-side code
+Server-side code is added with Swagger support in `./server`. A thin web server is provided in `./server/web` for serving
+built code
+
+### Original  [angularjs-gulp-browserify-boilerplate](https://github.com/jakemmarsh/angularjs-gulp-browserify-boilerplate/) with the AngularJs section removed.
+
 angularjs-gulp-browserify-boilerplate
 =====================================
-[![Build Status](https://travis-ci.org/jakemmarsh/angularjs-gulp-browserify-boilerplate.svg)](https://travis-ci.org/jakemmarsh/angularjs-gulp-browserify-boilerplate) [![devDependency Status](https://david-dm.org/jakemmarsh/angularjs-gulp-browserify-boilerplate/dev-status.svg)](https://david-dm.org/jakemmarsh/angularjs-gulp-browserify-boilerplate#info=devDependencies)
+[![devDependency Status](https://david-dm.org/jakemmarsh/angularjs-gulp-browserify-boilerplate/dev-status.svg)](https://david-dm.org/jakemmarsh/angularjs-gulp-browserify-boilerplate#info=devDependencies)
 
 A boilerplate using AngularJS, SASS, Gulp, and Browserify that also utilizes [these best AngularJS practices](https://github.com/toddmotto/angularjs-styleguide)  and Gulp best practices from [this resource](https://github.com/greypants/gulp-starter).
 
@@ -35,32 +56,6 @@ This boilerplate uses the latest versions of the following libraries:
 Along with many Gulp libraries (these can be seen in either `package.json`, or at the top of each task in `/gulp/tasks/`).
 
 ---
-
-### AngularJS
-
-AngularJS is a MVW (Model-View-Whatever) Javascript Framework for creating single-page web applications. In this boilerplate, it is used for all the application routing as well as all of the frontend views and logic.
-
-The AngularJS files are all located within `/app/js`, structured in the following manner:
-
-```
-/controllers
-  index.js   (the main module on which all controllers will be mounted, loaded in main.js)
-  example.js
-/directives
-  index.js   (the main module on which all directives will be mounted, loaded in main.js)
-  example.js
-/filters
-  index.js (the main module on which all filters will be mounted, loaded in main.js)
-  example.js
-/services
-  index.js   (the main module on which all services will be mounted, loaded in main.js)
-  example.js
-constants.js  (any constant values that you want to make available to Angular)
-main.js       (the main file read by Browserify, also where the application is defined and bootstrapped)
-on_run.js     (any functions or logic that need to be executed on app.run)
-on_config.js  (all route definitions and any logic that need to be executed on app.config)
-templates.js  (this is created via Gulp by compiling your views, and will not be present beforehand)
-```
 
 ##### Module organization
 
@@ -177,7 +172,7 @@ In this boilerplate, two end-to-end test examples are provided:
 
 More examples can be seen at the above link for Protractor.
 
-All e2e tests are run with `gulp protractor`.
+All e2e tests are run with `gulp protractor`. The command `npm run-script preprotractor` should be run once before running any Protractor tests (in order to update the webdrivers used by Selenium).
 
 **Notes:**
 

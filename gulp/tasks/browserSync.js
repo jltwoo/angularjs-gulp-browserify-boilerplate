@@ -16,10 +16,14 @@ gulp.task('browserSync', function() {
       middleware: function(req, res, next) {
         let fileHref = url.parse(req.url).href;
 
-        if ( !ASSET_EXTENSION_REGEX.test(fileHref) ) {
+        if ( ASSET_EXTENSION_REGEX.test(fileHref) ) {
+          return next();
+        } else if(req.url == '/business'){
+          req.url = '/index.business.html'
+        }
+        else {
           req.url = '/' + DEFAULT_FILE;
         }
-
         return next();
       }
     },

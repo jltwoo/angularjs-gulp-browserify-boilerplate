@@ -1,0 +1,119 @@
+// https://gist.github.com/jonathantneal/d0460e5c2d5d7f9bc5e6
+// =============================================================================
+// String Replace
+// =============================================================================
+
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+
+
+// =============================================================================
+// Media Queries
+// =============================================================================
+$mobile-width: 600px;
+$tablet-width: 949px;
+$desktop-width: 1200px;
+
+$highdensity: "only screen and (-webkit-min-device-pixel-ratio: 1.5)",
+              "only screen and (min--moz-device-pixel-ratio: 1.5)",
+              "only screen and (-o-min-device-pixel-ratio: 3/2)",
+              "only screen and (min-pixel-ratio: 1.5)";
+$mobile:      "only screen and (max-width: 600px)";
+$tablet:      "only screen and (min-width: 600px) and (max-width: 949px)";
+$desktop:     "only screen and (min-width: 950px) and (max-width: 1128px)";
+$desktop-xl:  "only screen and (min-width: 1129px)";
+
+/*Follows Bootstrap CSS media queries*/
+$visible-xs: "only screen and (max-width: 768px)";
+$visible-sm: "only screen and (min-width: 768px) and (max-width: 992px)";
+$visible-md: "only screen and (min-width: 992px) and (max-width: 1200px)";
+$visible-lg: "only screen and (min-width: 1200px)";
+
+@media #{$mobile} {
+  .not-mobile{
+    display: none !important;
+  } 
+}
+@media #{$tablet}, #{$desktop}, #{$desktop-xl} {
+  .mobile-only{
+    display: none !important;
+  } 
+}
+
+@mixin mobile{
+	@media #{$mobile} { @content; }	
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin not-desktop {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}

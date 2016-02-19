@@ -1,0 +1,13 @@
+doctype html
+html.no-js
+  head
+    base(href="/")
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title(ng-bind="pageTitle")
+    meta(name="description", content="")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0")
+    block scripts
+  body(jw-scroll-state="has-scrolled-", bind-to-window-scroll, style="overflow-x: hidden;")
+    div#ng-app(ui-view="")
+    block postBody
