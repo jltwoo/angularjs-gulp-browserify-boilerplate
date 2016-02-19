@@ -1,7 +1,8 @@
 'use strict';
 import configCommon from '../common/on_config';
 
-function OnConfig($stateProvider, $locationProvider,$compileProvider ,$provide, $urlRouterProvider,$translateProvider) {
+// All on_config must have same signature
+function OnConfig($stateProvider, $locationProvider,$compileProvider ,$provide, $urlRouterProvider) {
   'ngInject';
   
   configCommon.apply(this,arguments);
@@ -10,7 +11,7 @@ function OnConfig($stateProvider, $locationProvider,$compileProvider ,$provide, 
   .state('home', {
     url: '/',
     controller: 'HomeCtrl as home',
-    templateUrl: 'home.html',
+    templateUrl: 'home.public.html',
     title: 'Home'
   })
   $urlRouterProvider.otherwise('/');

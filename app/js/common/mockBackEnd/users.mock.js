@@ -4,7 +4,6 @@ function MockBEUsersService(MockBackEndService,$httpBackend,$cookies) {
   'ngInject';
 
   const service = {};
-  const Events = MockBEEventService;
 
   var model = MockBackEndService.model;
 

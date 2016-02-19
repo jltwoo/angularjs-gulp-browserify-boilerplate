@@ -28,6 +28,7 @@ const appModule = angular.module(moduleName,dependencies);
 Object.keys(components).forEach((component) => {
   Object.keys(components[component]).forEach((file) => {
     let fileModule = components[component][file];
+    fileModule = fileModule.default? fileModule.default:fileModule;
     if(Array.isArray(fileModule)){
     	for (var i = 0; i < fileModule.length; i++) {
     		appModule[component](fileModule[i].name,fileModule[i].fn);

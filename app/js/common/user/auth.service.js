@@ -14,7 +14,7 @@ function AuthService($http, $q, Users, $window, $rootScope) {
       service.user = data.user;
       $rootScope.$broadcast('EVENT_LOGIN_STATUS_CHANGED',$rootScope._isLoggedIn);
       deferred.resolve();
-    }.catch((err)=>{ deferred.reject(err); });
+    }).catch((err)=>{ deferred.reject(err); });
     return deferred.promise;
   }
   service.logout = function(){

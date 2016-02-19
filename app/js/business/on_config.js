@@ -1,7 +1,8 @@
 'use strict';
 import configCommon from '../common/on_config';
 
-function OnConfig($stateProvider, $urlRouterProvider) {
+// All on_config must have same signature
+function OnConfig($stateProvider, $locationProvider,$compileProvider ,$provide, $urlRouterProvider) {
   'ngInject';
   
   configCommon.apply(this,arguments);

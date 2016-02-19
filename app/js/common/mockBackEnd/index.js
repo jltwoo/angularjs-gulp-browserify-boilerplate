@@ -23,6 +23,7 @@ var MockServices = [];
 // This iterates through the current directory and creates MockBackEnds submodules
 Object.keys(components).forEach((key) => {
   var item = components[key];
+  item = item.default? item.default:item;
   MockServices.push(item.name);
   appModule.service(item.name,item.fn);
 });

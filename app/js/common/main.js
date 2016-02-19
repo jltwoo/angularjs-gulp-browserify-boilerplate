@@ -7,7 +7,6 @@ import angular from 'angular';
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';
 import 'angular-animate';
-import 'angular-translate';
 import 'angular-sanitize';
 import 'angular-touch';
 import 'angular-carousel';

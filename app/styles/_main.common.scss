@@ -1,6 +1,8 @@
 @import 'typography';
+@import 'materialColors';
 
-$link-color: $color-primary-0;
+
+$link-color: material-color(red);
 $link-hover-color: darken($link-color, 15%);
 
 $icon-font-path: "/fonts/bootstrap/";
@@ -15,7 +17,7 @@ html{
 }
 body {
   font-family: roboto, sans-serif;
-  color: $font-color--dark;
+  color: material-color(grey,600);
   background-color: white;
   height: 100%;
 }

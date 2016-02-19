@@ -1,5 +1,6 @@
 'use strict';
 
+// All on_config must have same signature
 function OnConfig($stateProvider, $locationProvider,$compileProvider ,$provide, $urlRouterProvider) {
   'ngInject';
   $locationProvider.html5Mode(true);
