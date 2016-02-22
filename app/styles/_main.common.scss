@@ -1,7 +1,6 @@
 @import 'typography';
 @import 'materialColors';
 
-
 $link-color: material-color(red);
 $link-hover-color: darken($link-color, 15%);
 
@@ -11,6 +10,7 @@ $icon-font-path: "/fonts/bootstrap/";
 $fontAwesomePath: "/fonts/";
 @import '../../bower_components/font-awesome/scss/font-awesome';
 @import '../../node_modules/ng-sortable/dist/ng-sortable.min';
+@import '../../node_modules/angular-material/angular-material.scss';
 
 html{
   overflow:auto;

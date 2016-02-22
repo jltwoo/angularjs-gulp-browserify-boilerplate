@@ -9,9 +9,12 @@ import 'angular-ui-bootstrap';
 import 'angular-animate';
 import 'angular-sanitize';
 import 'angular-touch';
+import 'angular-material';
 import 'angular-carousel';
 import 'angular-scroll';
 import 'ng-sortable';
+
+//import '../../../bower_components/angular-material/angular-material.js';
 
 import '../templates';
 import './user';
@@ -25,6 +28,7 @@ import '../common/mockBackEnd';
 const requires = [
   'ui.router',
   'ui.bootstrap',
+  'ngMaterial',
   'ngAnimate',
   'duScroll',
   'templates',
